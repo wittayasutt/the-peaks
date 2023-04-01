@@ -1,7 +1,9 @@
 import { ReactNode } from 'react';
+import styled from 'styled-components';
 
 import Header from '@/components/headers';
 import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 
 import text from '@/const/text';
 
@@ -11,16 +13,26 @@ type LayoutProps = {
 	description?: string;
 };
 
-const DefaultLayout = ({
-	children,
-	title = text.site_title,
-	description = text.site_description,
-}: LayoutProps) => {
+const Wrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	min-height: 100vh;
+`;
+
+const Main = styled.main`
+	flex: 1;
+`;
+
+const DefaultLayout = ({ children, title = text.site_title, description = text.site_description }: LayoutProps) => {
 	return (
 		<>
 			<Header title={title} description={description} />
-			<Navbar />
-			<main>{children}</main>
+			<Wrapper>
+				<Navbar />
+				<Main>{children}</Main>
+				<Footer />
+			</Wrapper>
 		</>
 	);
 };
