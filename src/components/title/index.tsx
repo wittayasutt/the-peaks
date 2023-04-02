@@ -1,9 +1,9 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import Dropdown from '@/components/dropdown/sorting';
-
 type TitleProps = {
-	title?: string;
+	children?: ReactNode;
+	title: string;
 };
 
 const Wrapper = styled.div`
@@ -30,11 +30,11 @@ const Title = styled.h1`
 	}
 `;
 
-const TitleComponent = ({ title }: TitleProps) => {
+const TitleComponent = ({ children, title }: TitleProps) => {
 	return (
 		<Wrapper>
 			<Title>{title}</Title>
-			<Dropdown />
+			{children}
 		</Wrapper>
 	);
 };

@@ -20,3 +20,10 @@ export type NewsDataListType = {
 	data: NewsDataType[];
 	meta: NewsMetaType;
 };
+
+export type HomePageNewsDataListType = {
+	topNews: NewsDataListType;
+	sportNews: NewsDataListType;
+	cultureNews: NewsDataListType;
+	lifetyleNews: NewsDataListType;
+};

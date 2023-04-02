@@ -1,13 +1,32 @@
 import axios, { AxiosResponse } from 'axios';
 import { transformNews } from '@/transforms/news';
+import SORTING_VALUE from '@/enums/sortingValue';
 
 const $axios = axios.create({
 	baseURL: process.env.API_BASE_URL,
 });
 
-export const serviceGetNews = () => {
+type GetNewsProps = {
+	orderBy?: string;
+	pageSize?: number;
+	section?: string | null;
+};
+
+export const serviceGetNews = ({ orderBy = SORTING_VALUE.NEWEST, pageSize = 8, section }: GetNewsProps) => {
+	let params = '';
+
+	if (orderBy) {
+		params += `&order-by=${orderBy}`;
+	}
+	if (pageSize) {
+		params += `&page-size=${pageSize}`;
+	}
+	if (section) {
+		params += `&section=${section}`;
+	}
+
 	return $axios
-		.get(`search?api-key=${process.env.API_KEY}&show-fields=thumbnail,body&show-elements=[image]`)
+		.get(`search?api-key=${process.env.API_KEY}&show-fields=thumbnail,body${params}`)
 		.then((response: AxiosResponse) => {
 			if (response?.data?.response?.status === 'ok') {
 				return transformNews(response.data.response);

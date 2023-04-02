@@ -1,20 +1,14 @@
-import { useState } from 'react';
-
 import Dropdown from './index';
-import { DropdownDataType } from '@/types/dropdown';
+import { dropdownData } from '@/const/sorting';
+import { DropdownItemType } from '@/types/dropdown';
 
-import text from '@/const/text';
+type SortingDropdownProps = {
+	selectedData: DropdownItemType;
+	onChange: Function;
+};
 
-const data: DropdownDataType = [
-	{ label: text.newestFirst, value: 'newestFirst' },
-	{ label: text.oldestFirst, value: 'oldestFirst' },
-	{ label: text.mostPopular, value: 'mostPopular' },
-];
-
-const SortingDropdownComponent = () => {
-	const [seletedItem, setSelectedItem] = useState(data[0]);
-
-	return <Dropdown data={data} selectedData={seletedItem} onChange={setSelectedItem} />;
+const SortingDropdownComponent = ({ selectedData, onChange }: SortingDropdownProps) => {
+	return <Dropdown data={dropdownData} selectedData={selectedData} onChange={onChange} />;
 };
 
 export default SortingDropdownComponent;

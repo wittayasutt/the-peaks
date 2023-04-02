@@ -89,7 +89,7 @@ const SortingDropdownComponent = ({ data, selectedData, onChange }: DropdownProp
 
 	return (
 		<Wrapper ref={ref}>
-			<Button className='dropbtn' onClick={() => handleOpenDropdown(true)}>
+			<Button onClick={() => handleOpenDropdown(true)}>
 				<span>{selectedData.label}</span>
 				<CaretDownIcon isOpen={isOpen}>
 					<FontAwesomeIcon icon={faCaretDown} />

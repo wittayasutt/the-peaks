@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import styled from 'styled-components';
 
 import Card from '@/components/cards';
 import { NewsDataListType } from '@/types/news';
-import { isDesktop } from '@/helpers/matchMedia';
 
 type TopStoriesProps = {
 	data: NewsDataListType;
@@ -24,6 +23,8 @@ const Wrapper = styled.div`
 	@media (min-width: ${(props) => props.theme.breakpoints.desktop}) {
 		grid-template-rows: repeat(5, 1fr);
 		gap: 2rem;
+
+		margin-bottom: 3rem;
 	}
 `;
 
@@ -31,16 +32,17 @@ const CardWrapper = styled.div<CardWrapperProps>`
 	margin-bottom: 1rem;
 
 	@media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
+		grid-column: span 6;
 		margin-bottom: 0;
+	}
 
+	@media (min-width: ${(props) => props.theme.breakpoints.desktop}) {
 		${(props) => (props.column ? `grid-column: span ${props.column}` : '')};
 		${(props) => (props.row ? `grid-row: span ${props.row}` : '')};
 	}
 `;
 
 const TopStories = ({ data }: TopStoriesProps) => {
-	const [desktop, setDesktop] = useState(false);
-
 	const renderData = useMemo(() => {
 		return data.data.map((item, index) => {
 			let column = 6;
@@ -48,28 +50,26 @@ const TopStories = ({ data }: TopStoriesProps) => {
 			let onlyText = false;
 			let onlyTitle = false;
 
-			if (desktop) {
-				switch (true) {
-					case index === 0:
-						column = 6;
-						row = 5;
-						break;
-					case index > 0 && index <= 2:
-						column = 3;
-						row = 3;
-						onlyTitle = true;
-						break;
-					case index > 2 && index <= 4:
-						column = 3;
-						row = 2;
-						onlyText = true;
-						onlyTitle = true;
-						break;
-					default:
-						column = 4;
-						row = 1;
-						break;
-				}
+			switch (true) {
+				case index === 0:
+					column = 6;
+					row = 5;
+					break;
+				case index > 0 && index <= 2:
+					column = 3;
+					row = 3;
+					onlyTitle = true;
+					break;
+				case index > 2 && index <= 4:
+					column = 3;
+					row = 2;
+					onlyText = true;
+					onlyTitle = true;
+					break;
+				default:
+					column = 4;
+					row = 1;
+					break;
 			}
 
 			return {
@@ -80,14 +80,7 @@ const TopStories = ({ data }: TopStoriesProps) => {
 				onlyTitle,
 			};
 		});
-	}, [data, desktop]);
-
-	// TODO: Check on-resize
-	useEffect(() => {
-		if (isDesktop()) {
-			setDesktop(true);
-		}
-	}, []);
+	}, [data]);
 
 	return (
 		<Wrapper>
@@ -97,7 +90,7 @@ const TopStories = ({ data }: TopStoriesProps) => {
 						<CardWrapper key={item.data.id} column={item.column} row={item.row}>
 							<Card
 								data={item.data}
-								headline={desktop && index === 0}
+								headline={index === 0}
 								onlyText={item.onlyText}
 								onlyTitle={item.onlyTitle}
 							/>
