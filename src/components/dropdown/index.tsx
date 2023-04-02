@@ -78,6 +78,11 @@ const SortingDropdownComponent = ({ data, selectedData, onChange }: DropdownProp
 	};
 
 	const handleSelectDropdownItem = (item: DropdownItemType) => {
+		if (selectedData.value === item.value) {
+			handleOpenDropdown(false);
+			return;
+		}
+
 		onChange(item);
 		handleOpenDropdown(false);
 	};

@@ -112,7 +112,7 @@ const SearchBoxComponent = () => {
 	};
 
 	const handleSearch = useCallback(async () => {
-		if (isSearching) {
+		if (isSearching && searchValue) {
 			await router.push(`/search?q=${searchValue}`);
 			setSearchValue('');
 		}
