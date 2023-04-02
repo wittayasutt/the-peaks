@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 require('dotenv').config();
 
+const withPWA = require('next-pwa')({ dest: 'public' });
+
 const nextConfig = {
 	env: {
 		API_BASE_URL: process.env.API_BASE_URL,
@@ -10,4 +12,4 @@ const nextConfig = {
 	reactStrictMode: true,
 };
 
-module.exports = nextConfig;
+module.exports = withPWA(nextConfig);
