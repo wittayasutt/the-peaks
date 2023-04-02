@@ -2,24 +2,24 @@ import { NewsDataType, NewsDataListType, NewsMetaType } from '@/types/news';
 
 export const transformNewsData = (res: any): NewsDataType => {
 	return {
-		id: res.id,
-		body: res.fields.body,
-		headline: res.fields.headline,
-		sectionId: res.sectionId,
-		thumbnail: res.fields.thumbnail,
-		webPublicationDate: res.webPublicationDate,
-		webTitle: res.webTitle,
+		id: res?.id || '',
+		body: res?.fields?.body || null,
+		headline: res?.fields?.headline || null,
+		sectionId: res?.sectionId || '',
+		thumbnail: res?.fields?.thumbnail || null,
+		webPublicationDate: res?.webPublicationDate || '',
+		webTitle: res?.webTitle || '',
 	};
 };
 
 export const transformNewsMeta = (res: any): NewsMetaType => {
 	return {
-		currentPage: res.currentPage,
-		orderBy: res.orderBy,
-		pages: res.pages,
-		pageSize: res.pageSize,
-		startIndex: res.startIndex,
-		total: res.total,
+		currentPage: res?.currentPage || 0,
+		orderBy: res?.orderBy || '',
+		pages: res?.pages || 0,
+		pageSize: res?.pageSize || 0,
+		startIndex: res?.startIndex || 0,
+		total: res?.total || 0,
 	};
 };
 
