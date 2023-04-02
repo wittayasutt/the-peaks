@@ -1,6 +1,7 @@
 export type NewsDataType = {
 	id: string;
 	body: string | null;
+	headline: string;
 	sectionId: string;
 	thumbnail: string | null;
 	webPublicationDate: string;

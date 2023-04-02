@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -127,7 +128,12 @@ const SubTitle = styled.p<AdjustDesktopProps>`
 `;
 
 const CardComponent = ({ data, headline, onlyText, onlyTitle }: CardProps) => {
+	const router = useRouter();
 	const [color, setColor] = useState(DEFAULT_COLOR);
+
+	const handleClick = () => {
+		router.push(`/article?q=${data.id}`);
+	};
 
 	useEffect(() => {
 		const newColor = getColorByNewsSectionId(data.sectionId);
@@ -137,7 +143,7 @@ const CardComponent = ({ data, headline, onlyText, onlyTitle }: CardProps) => {
 	const thumbnail = data.thumbnail ? data.thumbnail : require('@/assets/images/thumbnail.svg');
 
 	return (
-		<Wrapper borderColor={color}>
+		<Wrapper borderColor={color} onClick={handleClick}>
 			<Thumbnail src={thumbnail} alt='thumbnail' width={500} height={300} />
 			<LabelWrapper>
 				<Label headline={headline} onlyText={onlyText}>

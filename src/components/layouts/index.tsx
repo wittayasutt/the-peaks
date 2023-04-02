@@ -25,7 +25,7 @@ const Main = styled.main`
 	flex: 1;
 `;
 
-const DefaultLayout = ({ children, title = text.site_title, description = text.site_description }: LayoutProps) => {
+const DefaultLayout = ({ children, title = text.siteTitle, description = text.siteDescription }: LayoutProps) => {
 	return (
 		<>
 			<Header title={title} description={description} />

@@ -15,7 +15,7 @@ import NEWS_TYPES from '@/enums/newsTypes';
 
 import { serviceGetNews } from '@/services';
 
-const Home = () => {
+const HomePage = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [sortingNews, setSortingNews] = useState(dropdownData[0]);
 
@@ -76,4 +76,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default HomePage;

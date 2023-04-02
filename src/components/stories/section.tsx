@@ -46,7 +46,7 @@ const SectionStories = ({ data }: SectionStoriesProps) => {
 	return (
 		<Wrapper>
 			{renderData &&
-				renderData.map((item, index) => {
+				renderData.map((item) => {
 					return (
 						<CardWrapper key={item.data.id}>
 							<Card data={item.data} />

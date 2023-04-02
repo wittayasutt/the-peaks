@@ -4,6 +4,7 @@ export const transformNewsData = (res: any): NewsDataType => {
 	return {
 		id: res.id,
 		body: res.fields.body,
+		headline: res.fields.headline,
 		sectionId: res.sectionId,
 		thumbnail: res.fields.thumbnail,
 		webPublicationDate: res.webPublicationDate,

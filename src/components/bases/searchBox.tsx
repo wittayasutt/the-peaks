@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -89,7 +90,9 @@ const SearchIcon = styled(Image)`
 `;
 
 const SearchBoxComponent = () => {
+	const router = useRouter();
 	const [isSearching, setIsSearching] = useState(false);
+	const [searchValue, setSearchValue] = useState('');
 
 	const componentRef = useRef(null);
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -104,6 +107,23 @@ const SearchBoxComponent = () => {
 		}
 	};
 
+	const handleUpdateSearchValue = (value: string) => {
+		setSearchValue(value);
+	};
+
+	const handleSearch = useCallback(async () => {
+		if (isSearching) {
+			await router.push(`/search?q=${searchValue}`);
+			setSearchValue('');
+		}
+	}, [isSearching, router, searchValue]);
+
+	const handleKeyPress = (event: any) => {
+		if (event.key === 'Enter') {
+			handleSearch();
+		}
+	};
+
 	useEffect(() => {
 		handleSetIsSearching(false);
 		setIsClickedOutSide(false);
@@ -113,10 +133,18 @@ const SearchBoxComponent = () => {
 		<SearchBox ref={componentRef} isSearching={isSearching} onClick={() => handleSetIsSearching(true)}>
 			<SearchInputWrapper>
 				<SearchInputFrame isSearching={isSearching}>
-					<SearchInput ref={inputRef} type='text' placeholder={text.search_all_news} />
+					<SearchInput
+						ref={inputRef}
+						type='text'
+						value={searchValue}
+						placeholder={text.searchAllNews}
+						onChange={(e) => handleUpdateSearchValue(e.target.value)}
+						onKeyPress={handleKeyPress}
+					/>
 				</SearchInputFrame>
 			</SearchInputWrapper>
-			<SearchIconWrapper>
+
+			<SearchIconWrapper onClick={handleSearch}>
 				<SearchIconBackgroundWrapper>
 					<SearchIconBackground isSearching={isSearching} />
 				</SearchIconBackgroundWrapper>
