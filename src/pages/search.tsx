@@ -73,6 +73,7 @@ const SearchPage = () => {
 		if (newQuery) {
 			fetchData(newQuery, page);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query, page, sortingNews]);
 
 	useEffect(() => {

@@ -5,7 +5,7 @@ describe('transformNewsData', () => {
 		expect(transformNewsData(null)).toEqual({
 			id: '',
 			body: null,
-			headline: null,
+			headline: '',
 			sectionId: '',
 			thumbnail: null,
 			webPublicationDate: '',

@@ -4,7 +4,7 @@ export const transformNewsData = (res: any): NewsDataType => {
 	return {
 		id: res?.id || '',
 		body: res?.fields?.body || null,
-		headline: res?.fields?.headline || null,
+		headline: res?.fields?.headline || '',
 		sectionId: res?.sectionId || '',
 		thumbnail: res?.fields?.thumbnail || null,
 		webPublicationDate: res?.webPublicationDate || '',
