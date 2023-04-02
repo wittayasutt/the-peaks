@@ -26,7 +26,7 @@ const HomePage = () => {
 
 		try {
 			const [topNews, sportNews, cultureNews, lifetyleNews] = await Promise.all([
-				serviceGetNews({ orderBy: sortingNews.value }),
+				serviceGetNews({ orderBy: sortingNews.value, section: NEWS_TYPES.NEWS }),
 				serviceGetNews({ orderBy: sortingNews.value, pageSize: 3, section: NEWS_TYPES.SPORT }),
 				serviceGetNews({ orderBy: sortingNews.value, pageSize: 3, section: NEWS_TYPES.CULTURE }),
 				serviceGetNews({ orderBy: sortingNews.value, pageSize: 3, section: NEWS_TYPES.LIFE_AND_STYLE }),
