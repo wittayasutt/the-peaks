@@ -10,7 +10,15 @@ export const GlobalStyles = createGlobalStyle`
 		font-display: swap;
 	}
 
-    html,
+	*,
+	*::before,
+	*::after {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	html,
 	body {
 		padding: 0;
 		margin: 0;
@@ -28,9 +36,19 @@ export const GlobalStyles = createGlobalStyle`
 		list-style-type: none;
 	}
 
-	input {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 0;
+	}
+
+	input,
+	button {
 		padding: 0;
-		border: 0;
+		border-width: 0;
 
 		font-family: 'Roboto';
 		font-size: 1rem;

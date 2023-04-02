@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 	flex-direction: column;
 
 	min-height: 100vh;
+	background-color: ${(props) => props.theme.colors.background};
 `;
 
 const Main = styled.main`

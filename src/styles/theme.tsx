@@ -15,7 +15,10 @@ export const light = {
 	...theme,
 	colors: {
 		...theme.colors,
-		background: '#FFFFFF',
+		background: '#F2F2F2',
+		text: '#000000',
+		textOpacity: '#00000066',
+		borderOpacity: '#00000066',
 	},
 };
 
@@ -24,5 +27,8 @@ export const dark = {
 	colors: {
 		...theme.colors,
 		background: '#000000',
+		text: '#FFFFFF',
+		textOpacity: '#FFFFFF66',
+		borderOpacity: '#FFFFFF66',
 	},
 };

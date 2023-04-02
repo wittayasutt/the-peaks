@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import Container from '@/components/container';
 import Search from '@/components/bases/searchBox';
 
 const Wrapper = styled.nav`
@@ -22,11 +23,6 @@ const Navbar = styled.div`
 		flex-direction: row;
 		justify-content: space-between;
 	}
-
-	@media (min-width: ${(props) => props.theme.breakpoints.desktop}) {
-		max-width: ${(props) => props.theme.breakpoints.desktop};
-		margin: auto;
-	}
 `;
 
 const LogoWrapper = styled.div`
@@ -39,12 +35,6 @@ const LogoWrapper = styled.div`
 	@media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
 		flex: initial;
 		justify-content: initial;
-
-		padding: 0 2rem;
-	}
-
-	@media (min-width: ${(props) => props.theme.breakpoints.desktop}) {
-		padding: initial;
 	}
 `;
 
@@ -60,22 +50,24 @@ const SearchWrapper = styled.div`
 const NavbarComponent = () => {
 	return (
 		<Wrapper>
-			<Navbar>
-				<LogoWrapper>
-					<Link href='/'>
-						<Image
-							src={require('@/assets/images/Logo_White.png')}
-							alt='logo'
-							height='56'
-							width='142'
-							priority
-						/>
-					</Link>
-				</LogoWrapper>
-				<SearchWrapper>
-					<Search />
-				</SearchWrapper>
-			</Navbar>
+			<Container>
+				<Navbar>
+					<LogoWrapper>
+						<Link href='/'>
+							<Image
+								src={require('@/assets/images/Logo_White.png')}
+								alt='logo'
+								height='56'
+								width='142'
+								priority
+							/>
+						</Link>
+					</LogoWrapper>
+					<SearchWrapper>
+						<Search />
+					</SearchWrapper>
+				</Navbar>
+			</Container>
 		</Wrapper>
 	);
 };
