@@ -41,7 +41,7 @@ const TitleWrapper = styled.div`
 	}
 `;
 
-const Content = styled.div`
+const Content = styled.p`
 	line-height: 1.75rem;
 	order: 2;
 
