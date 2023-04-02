@@ -7,10 +7,6 @@ import useClickOutside from '@/hooks/useClickOutside';
 
 // types
 
-type SearchProps = {
-	searchingText?: string;
-};
-
 type SearchingProps = {
 	isSearching: boolean;
 };
@@ -92,14 +88,20 @@ const SearchIcon = styled(Image)`
 	z-index: 3;
 `;
 
-const SearchBoxComponent = ({ searchingText }: SearchProps) => {
+const SearchBoxComponent = () => {
 	const [isSearching, setIsSearching] = useState(false);
 
-	const ref = useRef(null);
-	const { isClickedOutSide, setIsClickedOutSide } = useClickOutside(ref);
+	const componentRef = useRef(null);
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	const { isClickedOutSide, setIsClickedOutSide } = useClickOutside(componentRef);
 
 	const handleSetIsSearching = (value: boolean) => {
 		setIsSearching(value);
+
+		if (value) {
+			inputRef.current && inputRef.current?.focus();
+		}
 	};
 
 	useEffect(() => {
@@ -108,10 +110,10 @@ const SearchBoxComponent = ({ searchingText }: SearchProps) => {
 	}, [isClickedOutSide, setIsClickedOutSide]);
 
 	return (
-		<SearchBox ref={ref} isSearching={isSearching} onClick={() => handleSetIsSearching(true)}>
+		<SearchBox ref={componentRef} isSearching={isSearching} onClick={() => handleSetIsSearching(true)}>
 			<SearchInputWrapper>
 				<SearchInputFrame isSearching={isSearching}>
-					<SearchInput type='text' placeholder={text.search_all_news} />
+					<SearchInput ref={inputRef} type='text' placeholder={text.search_all_news} />
 				</SearchInputFrame>
 			</SearchInputWrapper>
 			<SearchIconWrapper>

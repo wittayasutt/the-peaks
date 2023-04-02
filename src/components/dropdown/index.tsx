@@ -47,6 +47,7 @@ const DropdownList = styled.ul<IsOpenProps>`
 	border: 1px solid ${(props) => props.theme.colors.borderOpacity};
 
 	visibility: ${(props) => (props.isOpen ? 'visible' : 'hidden')};
+	z-index: 100;
 `;
 
 const DropdownItem = styled.li`
